@@ -18,7 +18,7 @@
 #     doc = Nokogiri::XML(@chart.to_xml_string)
 #     assert_equal(doc.xpath("//c:cat/c:strRef/c:f").size,1)
 #     assert_equal(doc.xpath("//c:strCache/c:ptCount[@val='#{@series.labels.size}']").size,1)
-#     @series.labels.each_with_index do |label, index|
+#     @series.labels.each.with_index do |label, index|
 #       assert_equal(doc.xpath("//c:strCache/c:pt[@idx='#{index}']").size,1)
 #       assert_equal(doc.xpath("//c:strCache/c:pt/c:v[text()='#{label}']").size,1)
 #     end
