@@ -89,7 +89,7 @@ module Axlsx
       serialized_tag('row', str, :r => r_index + 1) do
         tmp = '' # time / memory tradeoff, lots of calls to rubyzip costs more
                  # time..
-        each_with_index { |cell, c_index| cell.to_xml_string(r_index, c_index, tmp) }
+        each.with_index { |cell, c_index| cell.to_xml_string(r_index, c_index, tmp) }
         str << tmp
       end
     end
@@ -105,14 +105,14 @@ module Axlsx
 
     # sets the color for every cell in this row
     def color=(color)
-      each_with_index do | cell, index |
+      each.with_index do | cell, index |
         cell.color = color.is_a?(Array) ? color[index] : color
       end
     end
 
     # sets the style for every cell in this row
     def style=(style)
-      each_with_index do | cell, index |
+      each.with_index do | cell, index |
         cell.style = style.is_a?(Array) ? style[index] : style
       end
     end
@@ -148,7 +148,7 @@ module Axlsx
     def array_to_cells(values, options={})
       DataTypeValidator.validate :array_to_cells, Array, values
       types, style, formula_values = options.delete(:types), options.delete(:style), options.delete(:formula_values)
-      values.each_with_index do |value, index|
+      values.each.with_index do |value, index|
         options[:style] = style.is_a?(Array) ? style[index] : style if style
         options[:type] = types.is_a?(Array) ? types[index] : types if types
         options[:formula_value] = formula_values[index] if formula_values.is_a?(Array)
