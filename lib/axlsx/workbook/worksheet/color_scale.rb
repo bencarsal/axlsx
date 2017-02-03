@@ -96,7 +96,7 @@ module Axlsx
     # There has got to be cleaner way of merging these arrays.
     def initialize_default_cfvos(user_cfvos)
       defaults = self.class.default_cfvos
-      user_cfvos.each_with_index do |cfvo, index|
+      user_cfvos.each.with_index do |cfvo, index|
         if index < defaults.size
           cfvo = defaults[index].merge(cfvo)
         end
