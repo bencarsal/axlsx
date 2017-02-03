@@ -36,7 +36,7 @@ wb.add_worksheet(:name => 'volumes') do |ws|
   #rgb colors for our data series
   colors = ['00FF00', 'FF0000', '0000FF']
 
-  data.each_with_index do |value, index|
+  data.each.with_index do |value, index|
     ws.add_row value
     chart.add_series :data => ws.rows.last.cells[(1..value.size-1)], :labels => (0..value.size).map{ |i| i }, :title => ws.rows.last.cells.first, :color => colors[index]
   end
