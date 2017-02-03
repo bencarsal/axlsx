@@ -15,7 +15,7 @@ require 'axlsx/rels/relationship.rb'
     # @see Relationship#source_obj
     # @return [Relationship]
     def for(source_obj)
-      find{ |rel| rel.source_obj == source_obj }
+      select { |rel| rel.source_obj == source_obj }[0] rescue nil
     end
     
     def to_xml_string(str = '')
