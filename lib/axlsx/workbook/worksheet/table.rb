@@ -79,7 +79,7 @@ module Axlsx
       str << ('ref="' << @ref << '" totalsRowShown="0">')
       str << ('<autoFilter ref="' << @ref << '"/>')
       str << ('<tableColumns count="' << header_cells.length.to_s << '">')
-      header_cells.each_with_index do |cell,index|
+      header_cells.each.with_index do |cell,index|
         str << ('<tableColumn id ="' << (index+1).to_s << '" name="' << cell.value << '"/>')
       end
       str << '</tableColumns>'
