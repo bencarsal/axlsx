@@ -17,7 +17,7 @@ module Axlsx
     # @return [String]
     def to_xml_string(str = '')
       str << '<sheetData>'
-      worksheet.rows.each_with_index do |row, index| 
+      worksheet.rows.each.with_index do |row, index| 
         row.to_xml_string(index, str) 
       end
       str << '</sheetData>'
