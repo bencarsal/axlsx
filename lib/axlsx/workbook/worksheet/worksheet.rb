@@ -557,7 +557,7 @@ module Axlsx
     # @note For updating only a single column it is probably easier to just set the width of the ws.column_info[col_index].width directly
     # @param [Integer|Float|nil] widths
     def column_widths(*widths)
-      widths.each_with_index do |value, index|
+      widths.each.with_index do |value, index|
         next if value == nil
         Axlsx::validate_unsigned_numeric(value) unless value == nil
         find_or_create_column_info(index).width = value
@@ -778,7 +778,7 @@ module Axlsx
     def workbook=(v) DataTypeValidator.validate "Worksheet.workbook", Workbook, v; @workbook = v; end
 
     def update_column_info(cells, widths=nil)
-      cells.each_with_index do |cell, index|
+      cells.each.with_index do |cell, index|
         width = widths ? widths[index] : nil
         col = find_or_create_column_info(index)
         next if width == :ignore
